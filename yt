@@ -1,6 +1,5 @@
 #!/bin/sh
 #!/bin/bash
-#Created by FahimAnayet
 if [ -z "$2" ]
 then
 	if [[ "$1" == *".m3u8"* ]]; then
@@ -14,3 +13,4 @@ then
 	else
 	      youtube-dl -f $1+$2 $3 --external-downloader aria2c --external-downloader-args "-x $4 -k 1M"
 fi
+#Created by FahimAnayet
