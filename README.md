@@ -2,6 +2,7 @@
 
 This is a **Shell Script** I've created to easily use youtube-dl and aria2 simple use.
 
+- **Make Sure you have youtube-dl and aria2**
 **Make Sure you add this file in your path**
 
 ## Commands
