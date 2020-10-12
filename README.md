@@ -5,6 +5,11 @@ This is a **Shell Script** I've created to easily use youtube-dl and aria2 simpl
 - **Make Sure you have youtube-dl and aria2**
 - **Make Sure you add this file in your path**
 
+Dependencies
+============
+ * youtube-dl (http://rg3.github.io/youtube-dl/)
+ * aria2 (http://aria2.sourceforge.net/)
+
 ## Commands
 
 "yt link" will show you the video and audio id, or If this is a m3u3 file (hls) then it will start downloading immediately and faster!
