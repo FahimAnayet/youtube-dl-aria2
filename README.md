@@ -7,8 +7,8 @@ This is a **Shell Script** I've created to easily use youtube-dl and aria2 simpl
 
 Dependencies
 ============
- * youtube-dl (http://rg3.github.io/youtube-dl/)
- * aria2 (http://aria2.sourceforge.net/)
+ * [youtube-dl] (http://rg3.github.io/youtube-dl/)
+ * [aria2] (http://aria2.sourceforge.net/)
 
 ## Commands
 
