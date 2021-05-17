@@ -1,16 +1,69 @@
 #!/bin/sh
 #!/bin/bash
-if [ -z "$2" ]
-then
-	if [[ "$1" == *".m3u8"* ]]; then
-		youtube-dl --verbose --hls-prefer-native --fixup never $1
-	else
-		youtube-dl -F $1
-	fi
-	elif [ -z "$4" ]
-		then
-		      youtube-dl -f $1 $2 --external-downloader aria2c --external-downloader-args "-x $3 -k 1M"
-	else
-	      youtube-dl -f $1+$2 $3 --external-downloader aria2c --external-downloader-args "-x $4 -k 1M"
-fi
-#Created by FahimAnayet
+# Created by FahimAnayet
+
+Help()
+{
+	# Display Help
+	echo "Hi, I'm your helping hand!"
+	echo
+	echo "Syntax: scriptTemplate [-s|-l|h]"
+	echo "options:"
+	echo "s		Shows all available subtitle options." 
+	echo "l     Download selected subtitle"
+	echo "h     Help"
+	echo ""
+	echo "Examples:"
+	echo "yt -s <link> [this will show all available subtitles]"
+	echo "yt -s <en|bn|lang> <video code><audio code><link><splits no.> [this will download your desire video+audio and external subtitle.]"
+	echo "yt -l <en|bn|lang> <link> [this will download only subtitle]"
+	echo "yt <link> [this will show you available video and audio formats and codes, If link is an m3u8 it will start downloading the file.]"
+	echo "yt <video|audio code> <link> [this will download your selected video or audio only]"
+	echo "yt <video code> <audio code> <link> [this will download video and audio (no subtitle)]"
+	echo "yt -h Help menu"
+	echo "For extra example read the readme here: https://github.com/FahimAnayet/youtube-dl-aria2/blob/master/README.md"
+}
+
+while [[ $# -gt 0 ]]
+do
+    case "$1" in
+    -s)
+		if [[ -z "$3" ]]; then
+			youtube-dl --list-subs $2
+			shift
+			break;
+		else
+		  youtube-dl --write-sub --write-auto-sub --sub-lang=$2 -f $3+$4 $5 --external-downloader aria2c --external-downloader-args "-x $6 -k 1M"
+		fi
+			shift
+			break;
+      ;;
+	-l)
+			youtube-dl --write-sub --write-auto-sub --sub-lang=$2 --skip-download $3	
+			shift
+			break;
+	;;
+	-h)
+		Help
+		exit
+	;;
+    *)
+	  if [ -z "$2" ]
+	  then
+		  if [[ "$1" == *".m3u8"* ]]; then
+			  youtube-dl --verbose --hls-prefer-native --fixup never $1
+		  else
+			  youtube-dl -F $1
+		  fi
+	  elif [ -z "$4" ]
+	  then
+		  youtube-dl -f $1 $2 --external-downloader aria2c --external-downloader-args "-x $3 -k 1M"
+	  else
+		  youtube-dl -f $1+$2 $3 --external-downloader aria2c --external-downloader-args "-x $4 -k 1M"
+	  fi
+	  shift
+	  break;
+	  ;;
+  esac
+done
+
